@@ -7,7 +7,7 @@ from cibuildpkg import Builder, Package, get_platform, log_group, run
 
 if len(sys.argv) < 2:
     sys.stderr.write("Usage: build-ffmpeg.py <prefix> [stage]\n")
-    sys.stderr.write("       AArch64 build requires stage and possible values can be 1, 2 or 3\n")
+    sys.stderr.write("       AArch64 build requires stage and possible values can be 1, 2 or 3.\n")
     sys.exit(1)
 
 dest_dir = sys.argv[1]
@@ -27,7 +27,7 @@ if not os.path.exists(output_tarball):
     # install packages
 
     available_tools = set()
-    if system == "Linux" and os.environ.get("CIBUILDWHEEL") == "1" and not multistage_build:
+    if system == "Linux" and os.environ.get("CIBUILDWHEEL") == "1":
         with log_group("install packages"):
             run(["yum", "-y", "install", "gperf", "libuuid-devel", "zlib-devel"])
         available_tools.update(["gperf"])

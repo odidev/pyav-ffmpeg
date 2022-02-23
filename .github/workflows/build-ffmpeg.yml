@@ -29,8 +29,8 @@ jobs:
           docker run -v $PWD:/project:rw --workdir=/project ${{ env.img }} bash -exc '
             yum -y install gperf libuuid-devel zlib-devel;
             export PATH=${{ env.pybin }}:$PATH;
-            export LD_LIBRARY_PATH=${{ env.vendor }}/lib:$LD_LIBRARY_PATH;
             export CIBUILDWHEEL=1;
+            export LIBS=-lgmp;
             python scripts/build-ffmpeg.py ${{ env.vendor }} ${{ env.stage }};
             cp -r ${{ env.vendor }} /project;
           '
